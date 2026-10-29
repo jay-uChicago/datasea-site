@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>DataSea AI</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Data annotation for AI teams in Southeast Asia: Malay, English and Mandarin text, Shariah-aware classification, e-commerce product data and construction-site imagery.">
+<meta name="description" content="Human-labelled training data for AI that serves Southeast Asia: Malay, Indonesian, English and Mandarin text and speech, Shariah-aware classification, product data, building-defect imagery and first-person trade-work video. Fixed-price starter jobs from RM1,200.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"DataSea AI","url":"https://www.datasea.asia","email":"datasea.jay@gmail.com","areaServed":["Southeast Asia","Worldwide"],"address":{"@type":"PostalAddress","addressCountry":"MY"},"description":"Human-labelled AI training data for Southeast Asian languages and conditions."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -106,6 +107,7 @@ section{padding-block:64px;border-top:1px solid var(--line)}
 
 /* contact */
 .contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px}
+.contact .sec-head{align-content:start}
 @media (max-width:760px){.contact{grid-template-columns:1fr}}
 form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px}
 label{display:grid;gap:6px;font-size:14.5px;font-weight:500}
@@ -118,6 +120,25 @@ textarea{min-height:96px;resize:vertical}
 .copy code{background:var(--surface);border:1px solid var(--line);padding:6px 10px;border-radius:6px;user-select:all}
 .copy button{font:inherit;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:6px 10px;cursor:pointer}
 .done{background:var(--sea-soft);border-radius:10px;padding:14px 16px;font-size:15px}
+.done a{font-weight:600}
+.reach{display:grid;gap:10px;margin-top:8px}
+.reach a.btn{justify-self:start}
+.small{font-size:14.5px;color:var(--muted)}
+/* starter offers */
+.offers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:860px){.offers{grid-template-columns:1fr}}
+.offer{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:10px;align-content:start}
+.offer .price{font-family:var(--display);font-size:32px;font-weight:700;letter-spacing:-.01em}
+.offer .price small{font-family:var(--mono);font-size:12.5px;font-weight:400;color:var(--muted);letter-spacing:.04em;margin-left:6px}
+.offer p{color:var(--muted);font-size:16px}
+.offer ul{margin:0;padding-left:18px;color:var(--muted);font-size:15px;display:grid;gap:4px}
+.offer .langs{font-size:13.5px;font-family:var(--mono);color:var(--muted)}
+.fineprint{margin-top:20px;font-size:14.5px;color:var(--muted);max-width:75ch}
+/* global */
+.global{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:860px){.global{grid-template-columns:1fr}}
+.gcard{border-top:2px solid var(--sea);padding-top:16px;display:grid;gap:8px;align-content:start}
+.gcard p{color:var(--muted);font-size:16px}
 
 footer{padding-block:32px 48px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px;color:var(--muted)}
 
@@ -140,21 +161,22 @@ footer{padding-block:32px 48px;border-top:1px solid var(--line);display:flex;jus
   </a>
   <nav aria-label="Main">
     <a href="#services">Services</a>
-    <a href="#pilot">How a pilot works</a>
+    <a href="#starter">Starter jobs</a>
+    <a href="#global">Global AI teams</a>
     <a href="#quality">Quality</a>
-    <a class="btn" href="#contact">Start a pilot</a>
+    <a class="btn" href="#contact">Contact us</a>
   </nav>
 </header>
 
 <main id="top">
 <div class="hero">
   <div style="display:grid;gap:20px">
-    <p class="eyebrow">Data annotation · Southeast Asia</p>
-    <h1>Training data that speaks like Malaysia.</h1>
-    <p class="lede">We label text, images and video for AI teams building for Southeast Asian users: Malay, English and Mandarin, including the mixed-language messages people actually send.</p>
+    <p class="eyebrow">Human-labelled AI data · Southeast Asia</p>
+    <h1>Training data that speaks Southeast Asia.</h1>
+    <p class="lede">Native-speaker annotators in Malaysia label text, speech, images and video for AI teams building for Southeast Asia, from regional startups to global labs. Malay, Indonesian, English and Mandarin, including the mixed-language messages people actually send.</p>
     <div class="cta-row">
-      <a class="btn" href="#contact">Start a pilot</a>
-      <a class="btn ghost" href="#services">See what we label</a>
+      <a class="btn" href="#contact">Get a quote</a>
+      <a class="btn ghost" href="#starter">Starter jobs from RM1,200</a>
     </div>
   </div>
 
@@ -182,31 +204,96 @@ footer{padding-block:32px 48px;border-top:1px solid var(--line);display:flex;jus
 <section id="services">
   <div class="sec-head">
     <p class="eyebrow">Services</p>
-    <h2>Four kinds of data global vendors get wrong here.</h2>
+    <h2>The Southeast Asian data global vendors get wrong.</h2>
     <p>Each service is run by annotators who speak the language and know the context, with written guidelines agreed with you before any labelling starts.</p>
   </div>
   <div class="services">
     <article class="svc">
       <h3>Multilingual chat and LLM data</h3>
-      <p>Labelled conversations and preference data for chatbots and language models serving Malaysian, Singaporean and Indonesian users, including Manglish and Malay–Mandarin code-switching.</p>
-      <ul class="chips"><li>language ID per token</li><li>intent &amp; slots</li><li>sentiment</li><li>response ranking</li><li>translation review</li></ul>
+      <p>Labelled conversations, preference rankings, written responses and evaluation sets for chatbots and language models serving Malaysian, Indonesian and Singaporean users, including Manglish and Malay–English–Mandarin code-switching.</p>
+      <ul class="chips"><li>language ID per token</li><li>intent &amp; slots</li><li>response ranking</li><li>SFT writing</li><li>evaluation sets</li></ul>
+    </article>
+    <article class="svc">
+      <h3>Speech transcription and recording</h3>
+      <p>Mixed-language audio transcribed with language tags, speaker labels and timestamps, and new consented recordings of local accents for speech-recognition and voice teams.</p>
+      <ul class="chips"><li>code-switched transcripts</li><li>[MS] [EN] [ZH] tags</li><li>SRT / JSONL</li><li>ASR test sets</li></ul>
     </article>
     <article class="svc">
       <h3>Shariah-aware classification</h3>
       <p>Text labelled against compliance guidelines you provide or co-define with your Shariah advisers, for Islamic finance products, halal commerce and content moderation.</p>
-      <ul class="chips"><li>product &amp; contract text</li><li>prohibited-element flags</li><li>advisor review loop</li></ul>
+      <ul class="chips"><li>product &amp; contract text</li><li>prohibited-element flags</li><li>adviser review loop</li></ul>
     </article>
     <article class="svc">
       <h3>E-commerce product data</h3>
-      <p>Categories, attributes and image tags for marketplace catalogues, written in the mix of languages sellers in the region actually use.</p>
-      <ul class="chips"><li>taxonomy mapping</li><li>attribute extraction</li><li>image tagging</li><li>duplicate matching</li></ul>
+      <p>Categories, attributes, titles and image tags for marketplace catalogues, written in the mix of languages sellers in the region actually use.</p>
+      <ul class="chips"><li>taxonomy mapping</li><li>attribute extraction</li><li>BM / EN / 中文 titles</li><li>duplicate matching</li></ul>
     </article>
     <article class="svc">
-      <h3>Construction-site imagery</h3>
-      <p>Images and video from working building sites in the Klang Valley, collected with site owners' consent and labelled for safety, progress and inspection models.</p>
-      <ul class="chips"><li>PPE compliance</li><li>equipment detection</li><li>worker activity</li><li>defects &amp; cracks</li></ul>
+      <h3>Building-defect imagery</h3>
+      <p>Tropical building defects labelled for inspection, proptech and insurance models: cracks, seepage, spalling and more, with polygon masks in standard formats.</p>
+      <ul class="chips"><li>cracks &amp; seepage</li><li>spalling &amp; rust</li><li>COCO / YOLO</li><li>severity tags</li></ul>
+    </article>
+    <article class="svc">
+      <h3>Construction and trade-work video</h3>
+      <p>Images and first-person video from working sites and skilled trade crews, collected with written consent and labelled for safety, progress and robotics models.</p>
+      <ul class="chips"><li>PPE compliance</li><li>equipment detection</li><li>hand–tool activity</li><li>task segmentation</li></ul>
     </article>
   </div>
+</section>
+
+<section id="starter">
+  <div class="sec-head">
+    <p class="eyebrow">Starter jobs</p>
+    <h2>Try us on a small fixed-price job, delivered in five working days.</h2>
+    <p>Every starter job begins with a free 10-item or 10-minute sample on your own data, so you see the quality before you pay.</p>
+  </div>
+  <div class="offers">
+    <article class="offer">
+      <h3>Listing Tune-Up 300</h3>
+      <p class="price">RM1,200<small>300 SKUs</small></p>
+      <p>For online sellers whose Shopee, Lazada, TikTok Shop or web-store listings are messy, English-only or missing attributes.</p>
+      <ul><li>Category and up to 8 attributes per product</li><li>Titles in BM and English, plus a short Mandarin title</li><li>Image-quality flags and a change log</li></ul>
+      <p class="langs">Delivered in your bulk-upload template</p>
+    </article>
+    <article class="offer">
+      <h3>Mixed-Language Transcript 150</h3>
+      <p class="price">RM1,350<small>150 audio minutes</small></p>
+      <p>For meetings, interviews, focus groups, trainings or podcasts where people switch between BM, English and Mandarin.</p>
+      <ul><li>Transcript in the language actually spoken</li><li>Language tags, speaker labels and timestamps</li><li>DOCX, SRT captions and AI-ready JSONL</li></ul>
+      <p class="langs">Hokkien, Cantonese and Tamil on request</p>
+    </article>
+    <article class="offer">
+      <h3>Defect Set 200</h3>
+      <p class="price">RM1,500<small>200 images</small></p>
+      <p>For inspection, proptech, facility-management, insurance and research teams building defect detection or reporting tools.</p>
+      <ul><li>Polygon masks in 8 defect classes</li><li>Building element, material and severity tags</li><li>COCO JSON, YOLO and CSV, plus a label guide</li></ul>
+      <p class="langs">Labels describe what is visible, not an engineering diagnosis</p>
+    </article>
+  </div>
+  <p class="fineprint">Larger volumes move to a scoped pilot with a full quality report, then per-item pricing. Prices exclude any applicable tax. Client data is deleted 30 days after delivery, and NDAs are available on request.</p>
+</section>
+
+<section id="global">
+  <div class="sec-head">
+    <p class="eyebrow">For global AI teams</p>
+    <h2>Southeast Asian data for labs and data vendors in the US, Europe and beyond.</h2>
+    <p>Your models are reaching nearly 700 million people in Southeast Asia. We supply the native-speaker judgment and real-world footage that is hard to source from outside the region, as a managed team with one contract and one point of contact.</p>
+  </div>
+  <div class="global">
+    <article class="gcard">
+      <h3>Expert language work</h3>
+      <p>Native Malay, Indonesian and Malaysian Mandarin speakers for model evaluation, red-teaming, safety review, preference ranking and response writing, trained on your guidelines and measured on agreement.</p>
+    </article>
+    <article class="gcard">
+      <h3>Real trade-work footage</h3>
+      <p>First-person and fixed-camera video of skilled construction, waterproofing and repair work from working crews, with written consent from workers and site owners, for robotics and physical-AI teams.</p>
+    </article>
+    <article class="gcard">
+      <h3>Licensed datasets and capacity</h3>
+      <p>Licences to consented speech, defect and site collections, and overflow annotation capacity for data vendors that need Southeast Asian languages handled by a vetted team.</p>
+    </article>
+  </div>
+  <p class="fineprint">Quoted in USD, contracts in English, invoiced from Malaysia. Ask for our global rate card.</p>
 </section>
 
 <section id="pilot">
@@ -241,12 +328,16 @@ footer{padding-block:32px 48px;border-top:1px solid var(--line);display:flex;jus
 <section id="contact">
   <div class="contact">
     <div class="sec-head" style="margin-bottom:0">
-      <p class="eyebrow">Start a pilot</p>
+      <p class="eyebrow">Contact us</p>
       <h2>Tell us what your model needs to learn.</h2>
-      <p>We reply with a scoped pilot proposal, usually within two working days.</p>
-      <div class="copy" style="margin-top:12px">
-        <code id="email">hello@datasea.asia</code>
-        <button type="button" id="copyBtn">Copy email</button>
+      <p>Email us directly or use the form. We reply within two working days with a sample offer or a scoped proposal. Write in English, Bahasa Melayu or 中文.</p>
+      <div class="reach">
+        <a class="btn" href="mailto:datasea.jay@gmail.com?subject=DataSea%20enquiry">Email datasea.jay@gmail.com</a>
+        <div class="copy">
+          <code id="email">datasea.jay@gmail.com</code>
+          <button type="button" id="copyBtn">Copy email</button>
+        </div>
+        <p class="small">Based in Kuala Lumpur, Malaysia. Working with teams across Southeast Asia and worldwide.</p>
       </div>
     </div>
     <form id="pilotForm" novalidate>
@@ -254,19 +345,27 @@ footer{padding-block:32px 48px;border-top:1px solid var(--line);display:flex;jus
         <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required></label>
         <label for="f-company">Company<input id="f-company" name="company" autocomplete="organization" required></label>
       </div>
-      <label for="f-email">Work email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
-      <label for="f-service">What do you need labelled?
+      <div class="row2">
+        <label for="f-email">Work email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+        <label for="f-country">Country<input id="f-country" name="country" autocomplete="country-name" placeholder="e.g. Malaysia, Singapore, US"></label>
+      </div>
+      <label for="f-service">What do you need?
         <select id="f-service" name="service">
+          <option>Starter job: Listing Tune-Up 300 (RM1,200)</option>
+          <option>Starter job: Mixed-Language Transcript 150 (RM1,350)</option>
+          <option>Starter job: Defect Set 200 (RM1,500)</option>
           <option>Multilingual chat or LLM data</option>
+          <option>Speech transcription or recording</option>
           <option>Shariah-aware classification</option>
           <option>E-commerce product data</option>
-          <option>Construction-site imagery</option>
+          <option>Construction or trade-work video</option>
+          <option>Global rate card or dataset licence</option>
           <option>Something else</option>
         </select>
       </label>
       <label for="f-msg">Volume and timeline<textarea id="f-msg" name="message" placeholder="e.g. 50,000 chat messages, Malay and English, needed by March"></textarea></label>
-      <button class="btn" type="submit">Request a pilot proposal</button>
-      <p class="note" id="formNote">This form drafts your request. Send it to the email address on the left.</p>
+      <button class="btn" type="submit">Send enquiry</button>
+      <p class="note" id="formNote">This opens your email app with your enquiry filled in, addressed to datasea.jay@gmail.com.</p>
       <div class="done" id="done" hidden></div>
     </form>
   </div>
@@ -274,8 +373,8 @@ footer{padding-block:32px 48px;border-top:1px solid var(--line);display:flex;jus
 </main>
 
 <footer>
-  <span>© 2026 DataSea AI · Malaysia</span>
-  <span>datasea.asia</span>
+  <span>© 2026 DataSea AI · Kuala Lumpur, Malaysia</span>
+  <span><a href="mailto:datasea.jay@gmail.com">datasea.jay@gmail.com</a> · datasea.asia</span>
 </footer>
 </div>
 
@@ -287,13 +386,21 @@ footer{padding-block:32px 48px;border-top:1px solid var(--line);display:flex;jus
     function sel(){var r=document.createRange();r.selectNodeContents(em);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected — press Copy';}
     try{navigator.clipboard.writeText(t).then(function(){btn.textContent='Copied';},sel);}catch(e){sel();}
   });
-  var f=document.getElementById('pilotForm'), done=document.getElementById('done');
+  var f=document.getElementById('pilotForm'), done=document.getElementById('done'), TO=em.textContent;
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var n=f.name.value.trim(), c=f.company.value.trim(), m=f.email.value.trim();
     if(!n||!c||!/^\S+@\S+\.\S+$/.test(m)){done.hidden=false;done.textContent='Add your name, company and a valid work email, then try again.';return;}
+    var subj='Enquiry: '+c+' – '+f.service.value;
+    var body='Name: '+n+'\nCompany: '+c+'\nEmail: '+m+'\nCountry: '+f.country.value.trim()+'\nNeed: '+f.service.value+'\n\nVolume and timeline:\n'+f.message.value.trim();
+    var q='?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+    var gm='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(TO)+'&su='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
     done.hidden=false;
-    done.textContent='Your request is drafted. Email it to hello@datasea.asia with the subject "Pilot: '+c+' – '+f.service.value+'".';
+    done.innerHTML='';
+    var t=document.createElement('p');t.textContent='Your email app should open with the enquiry ready to send. If it doesn\u2019t, ';
+    var a=document.createElement('a');a.href=gm;a.target='_blank';a.rel='noopener';a.textContent='send it with Gmail';
+    t.appendChild(a);t.appendChild(document.createTextNode(' or email '+TO+' directly.'));done.appendChild(t);
+    window.location.href='mailto:'+TO+q;
   });
 })();
 </script>
