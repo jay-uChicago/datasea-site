@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DataSea AI</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Data annotation for AI teams in Southeast Asia: Malay, English and Mandarin text, Shariah-aware classification, e-commerce product data and construction-site imagery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column with a wide annotated-sentence hero; sections separated by space, tag colours carry meaning (MS / EN / ZH). */
+:root{
+  --bg:#f5f7f6; --surface:#ffffff; --ink:#10212a; --muted:#52646c; --line:#d9e2e0;
+  --sea:#0d6b68; --sea-soft:#dcefed;
+  --ms:#b7791f; --ms-bg:#fbefd9; --en:#2f63c4; --en-bg:#e3ecfb; --zh:#c0392b; --zh-bg:#fae3df;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --body:"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c171c; --surface:#122229; --ink:#e6eeee; --muted:#9db0b4; --line:#23363d;
+  --sea:#4fc2bb; --sea-soft:#14363a;
+  --ms:#e9b45a; --ms-bg:#3a2c12; --en:#8fb2f5; --en-bg:#1b2b4a; --zh:#f08a7c; --zh-bg:#43201b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c171c; --surface:#122229; --ink:#e6eeee; --muted:#9db0b4; --line:#23363d;
+  --sea:#4fc2bb; --sea-soft:#14363a;
+  --ms:#e9b45a; --ms-bg:#3a2c12; --en:#8fb2f5; --en-bg:#1b2b4a; --zh:#f08a7c; --zh-bg:#43201b; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.wrap{max-width:1080px;margin:0 auto}
+a{color:var(--sea)}
+:focus-visible{outline:2px solid var(--sea);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.1;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.01em}
+h3{font-size:21px;font-weight:600}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--sea)}
+
+/* header */
+header{display:flex;justify-content:space-between;align-items:center;padding-block:22px;gap:16px}
+.brand{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.01em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand svg{flex:none}
+nav{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:15px}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--sea);color:var(--bg);font-weight:600;text-decoration:none;
+  padding:12px 20px;border-radius:999px;font-size:16px;border:0;cursor:pointer;font-family:var(--body)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+nav .btn{color:var(--bg);padding:9px 16px;font-size:14.5px}
+@media (max-width:640px){nav a:not(.btn){display:none}}
+
+/* hero */
+.hero{padding-block:56px 40px;display:grid;gap:40px}
+.hero h1{font-size:clamp(40px,7vw,76px);letter-spacing:-.025em;max-width:13ch}
+.hero .lede{font-size:clamp(18px,2.2vw,21px);color:var(--muted);max-width:60ch}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+
+/* annotated sentence */
+.annot{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 24px 22px;display:grid;gap:18px;min-width:0}
+.annot-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.tokens{display:flex;flex-wrap:wrap;gap:14px 8px;align-items:flex-start}
+.tok{display:flex;flex-direction:column;align-items:center;gap:6px}
+.tok span{font-size:clamp(20px,3vw,28px);font-weight:500;padding:4px 9px;border-radius:7px;line-height:1.25}
+.tok small{font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+.ms span{background:var(--ms-bg);color:var(--ink);box-shadow:inset 0 -2px 0 var(--ms)} .ms small{color:var(--ms)}
+.en span{background:var(--en-bg);color:var(--ink);box-shadow:inset 0 -2px 0 var(--en)} .en small{color:var(--en)}
+.zh span{background:var(--zh-bg);color:var(--ink);box-shadow:inset 0 -2px 0 var(--zh)} .zh small{color:var(--zh)}
+.annot-foot{display:flex;flex-wrap:wrap;gap:8px 20px;border-top:1px dashed var(--line);padding-top:14px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.annot-foot b{color:var(--ink);font-weight:500}
+.legend{display:flex;gap:14px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle}
+
+/* sections */
+section{padding-block:64px;border-top:1px solid var(--line)}
+.sec-head{display:grid;gap:12px;margin-bottom:36px;max-width:62ch}
+.sec-head p{color:var(--muted)}
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:760px){.services{grid-template-columns:1fr}}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;display:grid;gap:12px;align-content:start}
+.svc p{color:var(--muted);font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.chips li{list-style:none;font-family:var(--mono);font-size:12.5px;padding:4px 9px;border-radius:6px;background:var(--sea-soft);color:var(--ink)}
+.chips{padding:0;margin-bottom:0}
+
+/* pilot steps */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;counter-reset:s;padding:0;margin:0}
+@media (max-width:860px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.steps li{list-style:none;display:grid;gap:8px;padding-top:16px;border-top:2px solid var(--sea)}
+.steps li::before{counter-increment:s;content:"Step " counter(s);font-family:var(--mono);font-size:12.5px;color:var(--sea);letter-spacing:.06em;text-transform:uppercase}
+.steps p{color:var(--muted);font-size:16px}
+
+/* quality */
+.quality{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+@media (max-width:760px){.quality{grid-template-columns:1fr}}
+.qlist{display:grid;gap:18px;padding:0;margin:0}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px}
+.qlist svg{margin-top:4px}
+.qlist p{color:var(--muted);font-size:16px}
+.qlist strong{display:block;color:var(--ink);font-weight:600}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px}
+@media (max-width:760px){.contact{grid-template-columns:1fr}}
+form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px}
+label{display:grid;gap:6px;font-size:14.5px;font-weight:500}
+input,select,textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;width:100%}
+textarea{min-height:96px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:520px){.row2{grid-template-columns:1fr}}
+.note{font-size:14px;color:var(--muted)}
+.copy{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:15px}
+.copy code{background:var(--surface);border:1px solid var(--line);padding:6px 10px;border-radius:6px;user-select:all}
+.copy button{font:inherit;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:6px 10px;cursor:pointer}
+.done{background:var(--sea-soft);border-radius:10px;padding:14px 16px;font-size:15px}
+
+footer{padding-block:32px 48px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px;color:var(--muted)}
+
+@media (prefers-reduced-motion:no-preference){
+  .tok{animation:rise .5s both}
+  .tok:nth-child(2){animation-delay:.05s}.tok:nth-child(3){animation-delay:.1s}.tok:nth-child(4){animation-delay:.15s}
+  .tok:nth-child(5){animation-delay:.2s}.tok:nth-child(6){animation-delay:.25s}.tok:nth-child(7){animation-delay:.3s}
+  .tok:nth-child(8){animation-delay:.35s}.tok:nth-child(9){animation-delay:.4s}
+  @keyframes rise{from{transform:translateY(6px)}to{transform:none}}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header>
+  <a class="brand" href="#top" aria-label="DataSea AI home">
+    <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect x="1" y="1" width="26" height="26" rx="7" fill="var(--sea)"/><path d="M5 17c3-3 6-3 9 0s6 3 9 0" stroke="var(--bg)" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M5 11c3-3 6-3 9 0s6 3 9 0" stroke="var(--bg)" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".55"/></svg>
+    DataSea AI
+  </a>
+  <nav aria-label="Main">
+    <a href="#services">Services</a>
+    <a href="#pilot">How a pilot works</a>
+    <a href="#quality">Quality</a>
+    <a class="btn" href="#contact">Start a pilot</a>
+  </nav>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div style="display:grid;gap:20px">
+    <p class="eyebrow">Data annotation · Southeast Asia</p>
+    <h1>Training data that speaks like Malaysia.</h1>
+    <p class="lede">We label text, images and video for AI teams building for Southeast Asian users: Malay, English and Mandarin, including the mixed-language messages people actually send.</p>
+    <div class="cta-row">
+      <a class="btn" href="#contact">Start a pilot</a>
+      <a class="btn ghost" href="#services">See what we label</a>
+    </div>
+  </div>
+
+  <figure class="annot" aria-label="Example of a code-switched customer message annotated by language and sentiment">
+    <div class="annot-head"><span>Sample · telco support chat</span><span>task: language-ID + sentiment + intent</span></div>
+    <div class="tokens">
+      <div class="tok en"><span>Boss,</span><small>EN</small></div>
+      <div class="tok ms"><span>saya</span><small>MS</small></div>
+      <div class="tok ms"><span>nak</span><small>MS</small></div>
+      <div class="tok en"><span>cancel</span><small>EN</small></div>
+      <div class="tok en"><span>plan</span><small>EN</small></div>
+      <div class="tok ms"><span>ni,</span><small>MS</small></div>
+      <div class="tok zh"><span>太贵了</span><small>ZH</small></div>
+      <div class="tok ms"><span>lah</span><small>MS · particle</small></div>
+    </div>
+    <figcaption class="annot-foot">
+      <span>sentiment <b>negative</b></span>
+      <span>intent <b>cancel_subscription</b></span>
+      <span>reason <b>price</b></span>
+      <span class="legend" aria-hidden="true"><span><i style="background:var(--ms)"></i>Malay</span><span><i style="background:var(--en)"></i>English</span><span><i style="background:var(--zh)"></i>Mandarin</span></span>
+    </figcaption>
+  </figure>
+</div>
+
+<section id="services">
+  <div class="sec-head">
+    <p class="eyebrow">Services</p>
+    <h2>Four kinds of data global vendors get wrong here.</h2>
+    <p>Each service is run by annotators who speak the language and know the context, with written guidelines agreed with you before any labelling starts.</p>
+  </div>
+  <div class="services">
+    <article class="svc">
+      <h3>Multilingual chat and LLM data</h3>
+      <p>Labelled conversations and preference data for chatbots and language models serving Malaysian, Singaporean and Indonesian users, including Manglish and Malay–Mandarin code-switching.</p>
+      <ul class="chips"><li>language ID per token</li><li>intent &amp; slots</li><li>sentiment</li><li>response ranking</li><li>translation review</li></ul>
+    </article>
+    <article class="svc">
+      <h3>Shariah-aware classification</h3>
+      <p>Text labelled against compliance guidelines you provide or co-define with your Shariah advisers, for Islamic finance products, halal commerce and content moderation.</p>
+      <ul class="chips"><li>product &amp; contract text</li><li>prohibited-element flags</li><li>advisor review loop</li></ul>
+    </article>
+    <article class="svc">
+      <h3>E-commerce product data</h3>
+      <p>Categories, attributes and image tags for marketplace catalogues, written in the mix of languages sellers in the region actually use.</p>
+      <ul class="chips"><li>taxonomy mapping</li><li>attribute extraction</li><li>image tagging</li><li>duplicate matching</li></ul>
+    </article>
+    <article class="svc">
+      <h3>Construction-site imagery</h3>
+      <p>Images and video from working building sites in the Klang Valley, collected with site owners' consent and labelled for safety, progress and inspection models.</p>
+      <ul class="chips"><li>PPE compliance</li><li>equipment detection</li><li>worker activity</li><li>defects &amp; cracks</li></ul>
+    </article>
+  </div>
+</section>
+
+<section id="pilot">
+  <div class="sec-head">
+    <p class="eyebrow">How a pilot works</p>
+    <h2>See the quality on your own data before you commit.</h2>
+  </div>
+  <ol class="steps">
+    <li><h3>Scope</h3><p>Send a sample of your data and what the model needs to learn. We draft labelling guidelines with you.</p></li>
+    <li><h3>Calibrate</h3><p>We label a small set together with your team and settle every edge case in the guidelines.</p></li>
+    <li><h3>Pilot batch</h3><p>We label a fixed batch at production settings and deliver it in your format.</p></li>
+    <li><h3>Quality report</h3><p>You get agreement scores, error examples and a price per item for the full volume.</p></li>
+  </ol>
+</section>
+
+<section id="quality">
+  <div class="quality">
+    <div class="sec-head" style="margin-bottom:0">
+      <p class="eyebrow">Quality and data handling</p>
+      <h2>Every batch is measured, not assumed.</h2>
+      <p>Your data stays in the scope you set, and you see the numbers behind each delivery.</p>
+    </div>
+    <ul class="qlist">
+      <li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="var(--sea-soft)"/><path d="M5 9.5l2.6 2.5L13 6.5" stroke="var(--sea)" stroke-width="2" fill="none"/></svg><p><strong>Double annotation on a sample</strong>Two annotators label the same items so agreement can be scored and disagreements reviewed.</p></li>
+      <li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="var(--sea-soft)"/><path d="M5 9.5l2.6 2.5L13 6.5" stroke="var(--sea)" stroke-width="2" fill="none"/></svg><p><strong>Gold-set checks</strong>Known answers are mixed into every batch to catch drift early.</p></li>
+      <li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="var(--sea-soft)"/><path d="M5 9.5l2.6 2.5L13 6.5" stroke="var(--sea)" stroke-width="2" fill="none"/></svg><p><strong>Guidelines you own</strong>Every rule and edge-case decision is written down and handed over with the data.</p></li>
+      <li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="var(--sea-soft)"/><path d="M5 9.5l2.6 2.5L13 6.5" stroke="var(--sea)" stroke-width="2" fill="none"/></svg><p><strong>Handled under Malaysia's PDPA</strong>NDAs as standard, access limited to the assigned team, and personal data redacted where the task allows.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact">
+    <div class="sec-head" style="margin-bottom:0">
+      <p class="eyebrow">Start a pilot</p>
+      <h2>Tell us what your model needs to learn.</h2>
+      <p>We reply with a scoped pilot proposal, usually within two working days.</p>
+      <div class="copy" style="margin-top:12px">
+        <code id="email">hello@datasea.asia</code>
+        <button type="button" id="copyBtn">Copy email</button>
+      </div>
+    </div>
+    <form id="pilotForm" novalidate>
+      <div class="row2">
+        <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required></label>
+        <label for="f-company">Company<input id="f-company" name="company" autocomplete="organization" required></label>
+      </div>
+      <label for="f-email">Work email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+      <label for="f-service">What do you need labelled?
+        <select id="f-service" name="service">
+          <option>Multilingual chat or LLM data</option>
+          <option>Shariah-aware classification</option>
+          <option>E-commerce product data</option>
+          <option>Construction-site imagery</option>
+          <option>Something else</option>
+        </select>
+      </label>
+      <label for="f-msg">Volume and timeline<textarea id="f-msg" name="message" placeholder="e.g. 50,000 chat messages, Malay and English, needed by March"></textarea></label>
+      <button class="btn" type="submit">Request a pilot proposal</button>
+      <p class="note" id="formNote">This form drafts your request. Send it to the email address on the left.</p>
+      <div class="done" id="done" hidden></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>© 2026 DataSea AI · Malaysia</span>
+  <span>datasea.asia</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  var btn=document.getElementById('copyBtn'), em=document.getElementById('email');
+  btn.addEventListener('click',function(){
+    var t=em.textContent;
+    function sel(){var r=document.createRange();r.selectNodeContents(em);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected — press Copy';}
+    try{navigator.clipboard.writeText(t).then(function(){btn.textContent='Copied';},sel);}catch(e){sel();}
+  });
+  var f=document.getElementById('pilotForm'), done=document.getElementById('done');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=f.name.value.trim(), c=f.company.value.trim(), m=f.email.value.trim();
+    if(!n||!c||!/^\S+@\S+\.\S+$/.test(m)){done.hidden=false;done.textContent='Add your name, company and a valid work email, then try again.';return;}
+    done.hidden=false;
+    done.textContent='Your request is drafted. Email it to hello@datasea.asia with the subject "Pilot: '+c+' – '+f.service.value+'".';
+  });
+})();
+</script>
+</body>
+</html>
